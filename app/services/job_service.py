@@ -133,6 +133,8 @@ def _process_job(job_id: str) -> None:
                 recipient.error_message = f"PDF generation failed: {type(exc).__name__}"
                 failed += 1
 
+            job.successful_count = success
+            job.failed_count = failed
             db.commit()
 
         # ── Determine terminal job status ───────────────────────────────
